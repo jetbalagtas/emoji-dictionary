@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         layoutManager = GridLayoutManager(this, 3)
         recyclerView.layoutManager = layoutManager
 
-        adapter = EmojiAdapter()
+        adapter = EmojiAdapter(arrayListOf("🔥", "👊", "🥰", "🎅", "⛪️", "💰"))
         recyclerView.adapter = adapter
     }
 }

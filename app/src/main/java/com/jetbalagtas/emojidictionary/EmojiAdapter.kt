@@ -6,18 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
-class EmojiAdapter : RecyclerView.Adapter<EmojiAdapter.TextHolder>() {
+class EmojiAdapter(val emojis: ArrayList<String>) : RecyclerView.Adapter<EmojiAdapter.TextHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextHolder {
         return TextHolder(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item_row, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return emojis.count()
     }
 
     override fun onBindViewHolder(holder: EmojiAdapter.TextHolder, position: Int) {
-        holder.bindEmoji("👍")
+        val emoji = emojis[position]
+        holder.bindEmoji(emoji)
     }
 
     class TextHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
