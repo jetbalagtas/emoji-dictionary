@@ -1,9 +1,11 @@
 package com.jetbalagtas.emojidictionary
 
+import android.content.Intent
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
 class EmojiAdapter(val emojis: ArrayList<String>) : RecyclerView.Adapter<EmojiAdapter.TextHolder>() {
@@ -26,13 +28,19 @@ class EmojiAdapter(val emojis: ArrayList<String>) : RecyclerView.Adapter<EmojiAd
         var view : View = v
         var emoji : String = ""
 
+        init {
+            v.setOnClickListener(this)
+        }
+
         fun bindEmoji(emoji:String) {
             this.emoji = emoji
             view.itemTextView.text = emoji
         }
 
         override fun onClick(v: View?) {
-            TODO("Not yet implemented")
+            val detailIntent = Intent(view.context, EmojiDetailActivity::class.java)
+            detailIntent.putExtra("emoji", emoji)
+            startActivity(view.context, detailIntent, null)
         }
 
     }
